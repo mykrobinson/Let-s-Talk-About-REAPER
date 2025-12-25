@@ -1,0 +1,23 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<index version="1.0" name="Let's Talk About REAPER">
+
+  <!-- Scripts -->
+  <category name="Scripts">
+    <reapack name="LTAR_DrummerClock.lua" type="script" desc="LTAR_DrummerClock.lua">
+     <version name="2.3" author="Let's Talk About REAPER" time="12-24-2025">
+        <source main="main">https://github.com/mykrobinson/Let-s-Talk-About-REAPER/raw/refs/heads/main/Scripts/LTAR_DrummerClock.lua</source>
+      </version>
+    </reapack>
+  </category>
+
+  <!-- Effects -->
+  <category name="sub folder name here">
+    <reapack name="script name" type="effect" desc="script name">
+      <version name="1.0" author="your name here" time="08-06-2025">
+        <source main="main">paste raw link here</source>
+      </version>
+    </reapack>
+  </category>
+
+</index>
