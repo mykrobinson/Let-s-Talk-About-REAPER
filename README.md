@@ -1,7 +1,7 @@
 # Let-s-Talk-About-REAPER
 Myk Robinson's scripts for niche case REAPER stuffs
 
-# Let's Talk About REAPER: Big @$$ Clock
+# Let's Talk About REAPER: DrummerClock
 **A high-visibility cinematic region clock for performers and engineers.**
 
 I created this tool because I needed a better way to see my place in a session from behind the drum kit. I am a filmmaker and drummer, not a programmer—this script was developed as a collaboration between my creative vision and Gemini (AI).
