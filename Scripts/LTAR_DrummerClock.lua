@@ -1,13 +1,19 @@
 -- @description Let's Talk About REAPER's DrummerClock
--- @version 2.2
--- @author Let's Talk About REAPER
+-- @version 2.3
+-- @author Let's Talk About
 -- @about
---   A high-visibility cinematic region clock for drummers and engineers.
---   Features configurable progress thresholds and transport pass-through.
+--   # Let's Talk About REAPER: DrummerClock
+--   A high-visibility cinematic region clock for performers and engineers.
+--   Developed as a collaboration between a Let's Talk About REAPER and Gemini (AI).
+--   
+--   Features:
+--   - Configurable progress thresholds (Yellow/Red).
+--   - Bold "PROJECT:" labeling for clear metadata view.
+--   - Keyboard pass-through for transport (Spacebar/Record).
+--   - Adaptive region color support.
 -- @changelog
---   - Added keyboard pass-through for transport controls.
---   - Restored configurable yellow/red thresholds.
---   - Added "PROJECT:" bold labeling.
+--   - Renamed script to "DrummerClock" for professional distribution.
+--   - Updated GUI branding and internal metadata.
 -- @provides
 --   [main] .
 
@@ -148,50 +154,4 @@ function draw_text_centered(str, y_pos, size, r, g, b, bold)
 end
 
 function main()
-    if gfx.w < 20 or gfx.h < 20 then reaper.defer(main) return end
-    
-    -- IMPROVED PASSTHROUGH
-    local char = gfx.getchar()
-    if char >= 0 and char ~= 27 then 
-        reaper.defer(main) 
-        -- 32 is Spacebar. If any key is pressed, pass it to REAPER's main window.
-        if char ~= 0 then 
-            reaper.JS_Window_SetFocus(reaper.GetMainHwnd()) -- Force focus back to REAPER for the action
-            reaper.Main_OnCommand(reaper.NamedCommandLookup("_BR_FOCUS_ARRANGE_WND"), 0) -- Focus arrange
-            reaper.Main_OnCommand(40044, 0) -- Transport: Play/stop (standard spacebar action)
-        end
-    else 
-        gfx.quit() 
-    end
-
-    local cur, nxt, countdown, progress, is_warning, cur_color, proj_name = get_logic()
-    if gfx.mouse_cap == 2 then ShowMenu() end
-    if gfx.mouse_cap == 1 and gfx.mouse_x > gfx.w - 50 and gfx.mouse_y < 50 then ShowMenu() end
-    if is_warning then gfx.set(0.3, 0, 0, 1) else gfx.set(0, 0, 0, 1) end
-    gfx.rect(0, 0, gfx.w, gfx.h, 1)
-    draw_gear(gfx.w - 25, 25, 12)
-    gfx.set(0.4, 0.4, 0.4, 1); gfx.line(gfx.w - 25, gfx.h, gfx.w, gfx.h - 25); gfx.line(gfx.w - 18, gfx.h, gfx.w, gfx.h - 18)
-
-    local current_y = gfx.h * 0.05
-    current_y = current_y + draw_text_centered("LET'S TALK ABOUT REAPER: BIG @$$ CLOCK", current_y, gfx.h * 0.045, 0.4, 0.4, 0.4, false) + 5
-    if SETTINGS.show_project_name == 1 then current_y = current_y + draw_project_line(proj_name, current_y, gfx.h * 0.04) + (gfx.h * 0.05) end
-    local r, g, b = reaper.ColorFromNative(cur_color)
-    current_y = current_y + draw_text_centered(cur, current_y, gfx.h * 0.25, r/255, g/255, b/255, true) + (gfx.h * 0.05)
-    current_y = current_y + draw_text_centered("NEXT: " .. nxt, current_y, gfx.h * 0.10, 0.5, 0.5, 0.5, false) + (gfx.h * 0.05)
-    draw_text_centered(countdown, current_y, gfx.h * 0.20, 0, 0.85, 0.85, true)
-
-    if SETTINGS.show_progress == 1 then
-        local bh = math.max(15, gfx.h * SETTINGS.bar_height_ratio)
-        gfx.set(0.12, 0.12, 0.12, 1); gfx.rect(0, gfx.h - bh, gfx.w, bh, 1)
-        if progress < SETTINGS.yellow_threshold then gfx.set(0, 0.55, 0.2, 1)
-        elseif progress < SETTINGS.red_threshold then gfx.set(0.65, 0.65, 0, 1)
-        else gfx.set(0.75, 0, 0, 1) end
-        gfx.rect(0, gfx.h - bh, gfx.w * progress, bh, 1)
-    end
-    gfx.update()
-end
-
-LoadSettings()
-local _, _, sw, sh = reaper.my_getViewport(0, 0, 0, 0, 0, 0, 0, 0, true)
-gfx.init("Let's Talk About REAPER's Big @$$ Clock", sw * 0.5, sh * 0.5, 0)
-main()
+    if gfx.w < 20 or gfx.h < 20 then reaper.defer
