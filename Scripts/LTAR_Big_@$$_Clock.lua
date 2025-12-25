@@ -1,6 +1,6 @@
 -- @description Let's Talk About REAPER's Big @$$ Clock
 -- @version 2.2
--- @author Myk Robinson with Gemini's help
+-- @author Let's Talk About REAPER
 -- @about
 --   A high-visibility cinematic region clock for drummers and engineers.
 --   Features configurable progress thresholds and transport pass-through.
@@ -195,4 +195,3 @@ LoadSettings()
 local _, _, sw, sh = reaper.my_getViewport(0, 0, 0, 0, 0, 0, 0, 0, true)
 gfx.init("Let's Talk About REAPER's Big @$$ Clock", sw * 0.5, sh * 0.5, 0)
 main()
-
